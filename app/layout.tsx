@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import TawkScript from "./components/TawkScript";
 
+// Standard sans for readability
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
+// Mono for that industrial, data-heavy CargoPulse aesthetic
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+
 export const metadata: Metadata = {
-  title: "FedEx - Shipping, Logistics, and Delivery Services",
-  description: "FedEx offers shipping, logistics, and delivery services worldwide. Track packages, ship documents, and find business solutions.",
-  keywords: "fedex, shipping, delivery, logistics, package tracking, courier services",
+  title: "CargoPulse | Neural Logistics & Enterprise Global Routing",
+  description: "Experience the next generation of logistics. CargoPulse utilizes neural routing and automated distribution nodes to power global trade at scale.",
+  keywords: "logistics OS, neural routing, enterprise shipping, supply chain automation, CargoPulse",
 };
 
 export default function RootLayout({
@@ -22,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-slate-950 text-slate-200`}>
+        {/* Subtle Scanline / Grain Overlay for the "Terminal" feel */}
+        <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        
         <Header />
-        {children}
+        <main className="min-h-screen">
+          {children}
+        </main>
         <Footer />
-        <TawkScript />
       </body>
     </html>
   );

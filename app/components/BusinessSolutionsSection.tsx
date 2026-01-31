@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/Business/BusinessSolutionsSection.tsx
 'use client';
 import { useState } from 'react';
@@ -6,533 +7,272 @@ import {
   FiTrendingUp, 
   FiGlobe, 
   FiShield, 
- 
   FiDatabase,
   FiBarChart,
   FiUsers,
   FiShoppingCart,
   FiCloud,
- 
   FiCheck,
-  FiPlay
+  FiPlay,
+  FiCpu,
+  FiLayers
 } from 'react-icons/fi';
 
 export default function BusinessSolutionsSection() {
   const [activeSolution, setActiveSolution] = useState('ecommerce');
-  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
   const [videoPlaying, setVideoPlaying] = useState(false);
 
   const solutions = [
     {
       id: 'ecommerce',
       icon: FiShoppingCart,
-      title: 'E-commerce Solutions',
-      description: 'Streamline your online business shipping',
-      color: 'from-purple-500 to-pink-600',
+      title: 'Global E-Commerce',
+      description: 'Enterprise scaling for digital storefronts',
+      color: 'from-teal-500 to-emerald-600',
       features: [
-        'Automated order processing',
-        'Real-time inventory sync',
-        'Multi-carrier integration',
-        'Returns management'
+        'Neural order routing',
+        'Direct-to-consumer fulfillment',
+        'Cross-border tax automation',
+        'Circular returns logic'
       ]
     },
     {
       id: 'supplychain',
-      icon: FiTrendingUp,
-      title: 'Supply Chain',
-      description: 'End-to-end logistics optimization',
-      color: 'from-blue-500 to-cyan-600',
+      icon: FiLayers,
+      title: 'Neural Supply Chain',
+      description: 'End-to-end predictive logistics',
+      color: 'from-blue-600 to-indigo-700',
       features: [
-        'Warehouse management',
-        'Inventory optimization',
-        'Demand forecasting',
-        'Global distribution'
+        'AI inventory placement',
+        'Autonomous warehouse sync',
+        'Demand-responsive scaling',
+        'Resilience analytics'
       ]
     },
     {
       id: 'international',
       icon: FiGlobe,
-      title: 'International Trade',
-      description: 'Global expansion made simple',
-      color: 'from-green-500 to-teal-600',
+      title: 'Global Compliance',
+      description: 'Frictionless international trade',
+      color: 'from-rose-500 to-pink-600',
       features: [
-        'Customs clearance',
-        'Duty & tax calculation',
-        'Trade compliance',
-        'Document automation'
+        'Algorithmic customs clearing',
+        'Digital twin tracking',
+        'HTS code automation',
+        'Trade corridor optimization'
       ]
     },
     {
       id: 'enterprise',
-      icon: FiUsers,
-      title: 'Enterprise Logistics',
-      description: 'Scalable solutions for large businesses',
-      color: 'from-orange-500 to-red-600',
+      icon: FiCpu,
+      title: 'API & Infrastructure',
+      description: 'Deep-stack logistics integration',
+      color: 'from-slate-600 to-slate-800',
       features: [
-        'Dedicated account management',
-        'Custom reporting',
-        'API integration',
-        'Volume discounts'
+        'Dedicated cluster hosting',
+        'High-throughput webhooks',
+        'Raw telemetry access',
+        'Custom protocol support'
       ]
     }
   ];
 
   const caseStudies = [
     {
-      company: 'TechGadgets Inc.',
-      industry: 'E-commerce',
-      challenge: 'Managing 10,000+ daily shipments across multiple carriers',
-      solution: 'Implemented FedEx API integration with automated shipping rules',
+      company: 'OmniTech Systems',
+      industry: 'Hardware SaaS',
+      challenge: 'Global distribution of high-value hardware with 0% margin for error',
+      solution: 'Deployed CargoPulse Neural Supply Chain with biometrically secured transport',
       results: [
-        { metric: '45%', label: 'Reduction in shipping costs' },
-        { metric: '99.8%', label: 'On-time delivery rate' },
-        { metric: '3.5x', label: 'Faster order processing' }
+        { metric: '22%', label: 'OpEx reduction' },
+        { metric: '0.01%', label: 'Loss rate' },
+        { metric: '60ms', label: 'API Latency' }
       ]
     },
     {
-      company: 'Global Pharma Corp.',
-      industry: 'Healthcare',
-      challenge: 'Temperature-sensitive international shipments with strict compliance',
-      solution: 'FedEx Cold Chain Solutions with real-time monitoring',
+      company: 'BioFlow Research',
+      industry: 'Life Sciences',
+      challenge: 'Cryogenic asset relocation across strict regulatory borders',
+      solution: 'Active-Pulse monitoring with real-time regulatory handshakes',
       results: [
-        { metric: '100%', label: 'Compliance rate' },
-        { metric: '24/7', label: 'Temperature monitoring' },
-        { metric: '50+', label: 'Countries served' }
+        { metric: '100%', label: 'Audit compliance' },
+        { metric: '-196°C', label: 'Stable Temp' },
+        { metric: '24/7', label: 'Escort Monitoring' }
       ]
-    }
-  ];
-
-  const features = [
-    {
-      icon: FiCloud,
-      title: 'Cloud Integration',
-      description: 'Seamless API integration with your existing systems',
-      benefits: ['Real-time sync', 'Automated workflows', 'Scalable infrastructure']
-    },
-    {
-      icon: FiBarChart,
-      title: 'Advanced Analytics',
-      description: 'Data-driven insights to optimize your shipping strategy',
-      benefits: ['Cost analysis', 'Performance metrics', 'Trend forecasting']
-    },
-    {
-      icon: FiShield,
-      title: 'Enterprise Security',
-      description: 'Bank-level security for your shipping data and transactions',
-      benefits: ['Data encryption', 'Access controls', 'Audit trails']
-    },
-    {
-      icon: FiDatabase,
-      title: 'Centralized Management',
-      description: 'Manage all your shipping operations from one platform',
-      benefits: ['Multi-location support', 'User permissions', 'Bulk operations']
     }
   ];
 
   const currentSolution = solutions.find(s => s.id === activeSolution);
 
   return (
-    <section className="py-20 bg-linear-to-br from-gray-900 to-gray-800 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-fedex-purple/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-fedex-orange/10 rounded-full blur-3xl"></div>
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-5 bg-[linear-linear(rgba(255,255,255,0.1)_1px,transparent_1px),linear-linear(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-size-[64px_64px]"></div>
+    <section className="py-24 bg-slate-950 relative overflow-hidden">
+      {/* Structural Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-teal-500/20 to-transparent" />
+        <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-500/20 to-transparent" />
+        <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-teal-500/20 to-transparent" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div 
+          className="max-w-3xl mb-20"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full bg-fedex-purple/20 border border-fedex-purple/30 mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <span className="w-2 h-2 bg-fedex-orange rounded-full mr-2"></span>
-            <span className="text-sm font-semibold text-white">
-              Enterprise Solutions
-            </span>
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Power Your Business
-            <span className="text-fedex-orange"> Growth </span>
+          <div className="flex items-center space-x-2 text-teal-400 font-bold tracking-[0.3em] uppercase text-xs mb-6">
+            <FiShield className="animate-pulse" />
+            <span>Industrial Grade Solutions</span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter">
+            Architecting <span className="text-slate-600 italic">Tomorrow&apos;s</span> Flow.
           </h2>
-          
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Scalable shipping and logistics solutions designed to drive efficiency, 
-            reduce costs, and accelerate your business growth in today&apos;s competitive market.
+          <p className="text-xl text-slate-400 leading-relaxed">
+            From hyper-growth startups to Fortune 100 entities, CargoPulse provides the 
+            infrastructure to move atoms at the speed of bits.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          {/* Solutions Navigation */}
-          <motion.div
-            className="lg:col-span-1"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-6 sticky top-8">
-              <h3 className="text-lg font-bold text-white mb-6">Business Solutions</h3>
-              <div className="space-y-3">
-                {solutions.map((solution) => (
-                  <motion.button
-                    key={solution.id}
-                    onClick={() => setActiveSolution(solution.id)}
-                    className={`w-full flex items-center space-x-4 p-4 rounded-xl text-left transition-all border ${
-                      activeSolution === solution.id
-                        ? 'bg-linear-to-r from-fedex-purple/20 to-fedex-blue/20 border-fedex-purple shadow-lg'
-                        : 'bg-gray-700/50 border-gray-600 hover:bg-gray-700'
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                      activeSolution === solution.id 
-                        ? 'bg-white text-fedex-purple' 
-                        : 'bg-gray-600 text-gray-300'
-                    }`}>
-                      <solution.icon className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-white text-sm">{solution.title}</div>
-                      <div className="text-gray-400 text-xs mt-1">{solution.description}</div>
-                    </div>
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: activeSolution === solution.id ? 1 : 0 }}
-                      className="w-2 h-2 bg-fedex-orange rounded-full"
-                    />
-                  </motion.button>
-                ))}
-              </div>
-
-              {/* CTA Card */}
-              <motion.div
-                className="mt-6 p-4 bg-linear-to-r from-fedex-purple to-fedex-blue rounded-xl text-white"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          {/* Navigation Sidebar */}
+          <div className="lg:col-span-4 space-y-3">
+            {solutions.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => setActiveSolution(s.id)}
+                className={`w-full group relative p-6 rounded-2xl border transition-all text-left overflow-hidden ${
+                  activeSolution === s.id 
+                  ? 'bg-slate-900 border-teal-500/50 shadow-[0_0_30px_rgba(20,184,166,0.1)]' 
+                  : 'bg-transparent border-slate-800 hover:border-slate-700'
+                }`}
               >
-                <h4 className="font-bold text-sm mb-2">Ready to Transform Your Shipping?</h4>
-                <p className="text-white/80 text-xs mb-3">
-                  Speak with our business solutions experts
-                </p>
-                <motion.button
-                  className="w-full bg-white text-fedex-purple py-2 px-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Contact Sales
-                </motion.button>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Solution Details */}
-          <motion.div
-            className="lg:col-span-2"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden">
-              {/* Solution Header */}
-              <div className={`bg-linear-to-r ${currentSolution?.color} p-8 text-white`}>
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                      {currentSolution?.icon && (
-                        <currentSolution.icon className="w-8 h-8" />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold">{currentSolution?.title}</h3>
-                      <p className="text-white/80 mt-2">{currentSolution?.description}</p>
-                    </div>
+                {activeSolution === s.id && (
+                  <motion.div 
+                    layoutId="activeGlow" 
+                    className="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-transparent pointer-events-none" 
+                  />
+                )}
+                <div className="flex items-center space-x-4 relative z-10">
+                  <div className={`p-3 rounded-xl transition-colors ${
+                    activeSolution === s.id ? 'bg-teal-500 text-white' : 'bg-slate-800 text-slate-400 group-hover:text-slate-200'
+                  }`}>
+                    <s.icon size={24} />
+                  </div>
+                  <div>
+                    <h4 className={`font-bold transition-colors ${activeSolution === s.id ? 'text-white' : 'text-slate-400'}`}>
+                      {s.title}
+                    </h4>
+                    <p className="text-[11px] font-medium text-slate-500 uppercase tracking-wider mt-1">{s.description}</p>
                   </div>
                 </div>
-              </div>
+              </button>
+            ))}
 
-              {/* Solution Content */}
-              <div className="p-8">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeSolution}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="space-y-8"
-                  >
-                    {/* Features Grid */}
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-6">Key Features</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {currentSolution?.features.map((feature, index) => (
-                          <motion.div
-                            key={feature}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="flex items-center space-x-3 p-4 bg-gray-700/50 rounded-xl border border-gray-600"
-                          >
-                            <div className="w-8 h-8 bg-fedex-orange/20 rounded-lg flex items-center justify-center shrink-0">
-                              <FiCheck className="w-4 h-4 text-fedex-orange" />
-                            </div>
-                            <span className="text-white text-sm font-medium">{feature}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Demo Video/Image */}
-                    <div className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-700">
-                      <div className="aspect-video bg-linear-to-br from-gray-800 to-gray-900 relative flex items-center justify-center">
-                        {!videoPlaying ? (
-                          <>
-                            <div className="text-center">
-                              <motion.button
-                                onClick={() => setVideoPlaying(true)}
-                                className="w-20 h-20 bg-fedex-orange rounded-full flex items-center justify-center shadow-2xl hover:bg-orange-600 transition-colors group"
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                              >
-                                <FiPlay className="w-8 h-8 text-white ml-1" />
-                              </motion.button>
-                              <p className="text-gray-400 mt-4 text-sm">
-                                Watch {currentSolution?.title} in action
-                              </p>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="w-full h-full bg-black flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="w-16 h-16 border-4 border-fedex-orange border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                              <p className="text-gray-400">Loading demo video...</p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Benefits */}
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-6">Business Benefits</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {[
-                          {
-                            title: 'Cost Reduction',
-                            description: 'Optimize shipping spend with intelligent rate shopping',
-                            impact: 'Save up to 35% on shipping costs'
-                          },
-                          {
-                            title: 'Efficiency Gain',
-                            description: 'Automate manual processes and reduce operational overhead',
-                            impact: 'Reduce processing time by 70%'
-                          },
-                          {
-                            title: 'Scalability',
-                            description: 'Grow your shipping operations without infrastructure costs',
-                            impact: 'Scale to 10,000+ shipments daily'
-                          },
-                          {
-                            title: 'Customer Satisfaction',
-                            description: 'Provide better delivery experiences and tracking',
-                            impact: 'Improve delivery satisfaction by 45%'
-                          }
-                        ].map((benefit, index) => (
-                          <motion.div
-                            key={benefit.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 + index * 0.1 }}
-                            className="bg-gray-700/30 rounded-xl p-6 border border-gray-600 hover:border-gray-500 transition-colors"
-                            onMouseEnter={() => setHoveredFeature(index)}
-                            onMouseLeave={() => setHoveredFeature(null)}
-                          >
-                            <h5 className="font-bold text-white mb-2">{benefit.title}</h5>
-                            <p className="text-gray-400 text-sm mb-3">{benefit.description}</p>
-                            <div className="flex items-center space-x-2">
-                              <div className="w-2 h-2 bg-fedex-orange rounded-full"></div>
-                              <span className="text-fedex-orange text-sm font-semibold">
-                                {benefit.impact}
-                              </span>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+            <div className="mt-8 p-8 rounded-3xl bg-gradient-to-br from-indigo-600 to-blue-700 text-white">
+              <h5 className="text-lg font-black mb-2">Enterprise Inquiry</h5>
+              <p className="text-indigo-100 text-xs mb-6 leading-relaxed">Connect with our solutions architecture team for custom volume pricing.</p>
+              <button className="w-full py-4 bg-white text-indigo-600 rounded-xl font-black text-sm hover:shadow-xl transition-all">
+                Request Briefing
+              </button>
             </div>
-          </motion.div>
+          </div>
+
+          {/* Main Display Area */}
+          <div className="lg:col-span-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSolution}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="bg-slate-900/50 border border-slate-800 rounded-[2.5rem] overflow-hidden"
+              >
+                <div className={`h-2 bg-gradient-to-r ${currentSolution?.color}`} />
+                <div className="p-10">
+                  <div className="grid md:grid-cols-2 gap-12">
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-3xl font-black text-white mb-4">{currentSolution?.title}</h3>
+                        <p className="text-slate-400 leading-relaxed">{currentSolution?.description}</p>
+                      </div>
+                      <div className="space-y-3">
+                        {currentSolution?.features.map((f, i) => (
+                          <div key={i} className="flex items-center space-x-3 text-sm font-bold text-slate-300">
+                            <FiCheck className="text-teal-400" />
+                            <span>{f}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-950 rounded-3xl p-8 border border-slate-800 flex flex-col justify-center text-center">
+                       <div className="w-20 h-20 bg-teal-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                          <FiPlay className="text-teal-400 translate-x-1" size={32} />
+                       </div>
+                       <h5 className="text-white font-bold mb-2">System Demo</h5>
+                       <p className="text-slate-500 text-xs mb-6 px-4">See how our control tower visualizes {currentSolution?.title} workflows in real-time.</p>
+                       <button className="mx-auto px-6 py-3 border border-slate-700 rounded-xl text-slate-300 text-xs font-black hover:bg-slate-800 transition-colors">
+                         Launch Viewer
+                       </button>
+                    </div>
+                  </div>
+
+                  {/* Impact Stats */}
+                  <div className="mt-12 pt-10 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {[
+                      { l: 'Efficiency', v: '+42%' },
+                      { l: 'Carbon Footprint', v: '-18%' },
+                      { l: 'Accuracy', v: '99.9%' },
+                      { l: 'Latency', v: '<200ms' }
+                    ].map((stat, i) => (
+                      <div key={i} className="text-center md:text-left">
+                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">{stat.l}</p>
+                        <p className="text-xl font-mono font-bold text-white">{stat.v}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
-        {/* Case Studies */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">Success Stories</h3>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              See how businesses like yours are transforming their operations with FedEx solutions
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {caseStudies.map((study, index) => (
-              <motion.div
-                key={study.company}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 + index * 0.2 }}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-8 hover:border-gray-600 transition-colors"
+        {/* Case Study Section */}
+        <div className="mt-32">
+          <h3 className="text-2xl font-black text-white mb-12 flex items-center space-x-3">
+            <FiTrendingUp className="text-rose-500" />
+            <span>Industrial Success Stories</span>
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            {caseStudies.map((cs, i) => (
+              <motion.div 
+                key={i}
+                whileHover={{ y: -5 }}
+                className="bg-slate-900 border border-slate-800 p-10 rounded-[2rem] group transition-all hover:border-slate-600"
               >
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex justify-between items-start mb-8">
                   <div>
-                    <h4 className="text-xl font-bold text-white">{study.company}</h4>
-                    <span className="text-fedex-orange text-sm font-semibold">{study.industry}</span>
+                    <p className="text-rose-500 font-black text-[10px] uppercase tracking-widest mb-1">{cs.industry}</p>
+                    <h4 className="text-2xl font-black text-white">{cs.company}</h4>
                   </div>
-                  <div className="w-12 h-12 bg-fedex-purple/20 rounded-xl flex items-center justify-center">
-                    <FiTrendingUp className="w-6 h-6 text-fedex-purple" />
-                  </div>
+                  <FiBarChart className="text-slate-700 group-hover:text-teal-400 transition-colors" size={32} />
                 </div>
-
-                <div className="space-y-4 mb-6">
-                  <div>
-                    <h5 className="text-white font-semibold mb-2">Challenge</h5>
-                    <p className="text-gray-400 text-sm">{study.challenge}</p>
-                  </div>
-                  <div>
-                    <h5 className="text-white font-semibold mb-2">Solution</h5>
-                    <p className="text-gray-400 text-sm">{study.solution}</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-700">
-                  {study.results.map((result, resultIndex) => (
-                    <motion.div
-                      key={result.label}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.7 + resultIndex * 0.1 }}
-                      className="text-center"
-                    >
-                      <div className="text-2xl font-bold text-fedex-orange mb-1">
-                        {result.metric}
-                      </div>
-                      <div className="text-gray-400 text-xs">{result.label}</div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Technology Features */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">Enterprise-Grade Technology</h3>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Built with the latest technology to ensure reliability, security, and performance
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.7 + index * 0.1 }}
-                className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-fedex-purple/50 transition-colors group"
-              >
-                <div className="w-12 h-12 bg-linear-to-r from-fedex-purple to-fedex-blue rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <feature.icon className="w-6 h-6 text-white" />
-                </div>
-                <h4 className="text-lg font-bold text-white mb-3">{feature.title}</h4>
-                <p className="text-gray-400 text-sm mb-4">{feature.description}</p>
-                <div className="space-y-2">
-                  {feature.benefits.map((benefit ) => (
-                    <div key={benefit} className="flex items-center space-x-2">
-                      <div className="w-1.5 h-1.5 bg-fedex-orange rounded-full"></div>
-                      <span className="text-gray-300 text-xs">{benefit}</span>
+                <p className="text-slate-400 text-sm mb-8 leading-relaxed italic border-l-2 border-slate-800 pl-4">
+                  &quot;{cs.challenge}&quot;
+                </p>
+                <div className="grid grid-cols-3 gap-4">
+                  {cs.results.map((r, idx) => (
+                    <div key={idx}>
+                      <p className="text-xl font-mono font-bold text-white">{r.metric}</p>
+                      <p className="text-[10px] font-bold text-slate-500 uppercase mt-1">{r.label}</p>
                     </div>
                   ))}
                 </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <div className="bg-linear-to-r from-fedex-purple to-fedex-blue rounded-2xl p-12 text-white relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -translate-y-32 translate-x-32"></div>
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full translate-y-48 -translate-x-48"></div>
-            </div>
-            
-            <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to Transform Your Business Shipping?
-              </h3>
-              <p className="text-white/80 text-xl mb-8 max-w-2xl mx-auto">
-                Join thousands of businesses that trust FedEx for their logistics needs
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
-                  className="px-8 py-4 bg-white text-fedex-purple rounded-xl font-bold hover:bg-gray-100 transition-colors"
-                  whileHover={{ scale: 1.05, boxShadow: "0 10px 30px -5px rgba(255, 255, 255, 0.3)" }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Get Custom Quote
-                </motion.button>
-                <motion.button
-                  className="px-8 py-4 border-2 border-white text-white rounded-xl font-bold hover:bg-white/10 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Schedule Demo
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
