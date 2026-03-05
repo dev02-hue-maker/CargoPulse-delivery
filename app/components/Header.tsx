@@ -25,7 +25,7 @@ export default function Header() {
     { name: 'Track', icon: FaBox, href: '/tracking' },
     { name: 'Services', icon: FaGlobeAmericas, href: '/services' },
     { name: 'Business', icon: FaBusinessTime, href: '/business' },
-    { name: 'Support', href: '/support' },
+    // { name: 'Support', href: '/support' },
   ];
 
   const handleTrack = (e: React.FormEvent) => {
