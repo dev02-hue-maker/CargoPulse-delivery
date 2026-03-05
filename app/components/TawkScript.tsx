@@ -20,7 +20,7 @@ export default function TawkScript() {
           var s1=document.createElement("script"),
               s0=document.getElementsByTagName("script")[0];
           s1.async=true;
-          s1.src='https://embed.tawk.to/689dd91e664fee19271dff4d/1j9omsii9';
+          s1.src='https://embed.tawk.to/689dd91e664fee19271dff4d/1jiv8j463';
           s1.charset='UTF-8';
           s1.setAttribute('crossorigin','*');
           s0.parentNode.insertBefore(s1,s0);
